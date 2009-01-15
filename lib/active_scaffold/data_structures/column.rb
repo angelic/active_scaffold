@@ -208,7 +208,7 @@ module ActiveScaffold::DataStructures
       @column = active_record_class.columns_hash[self.name.to_s]
       @association = active_record_class.reflect_on_association(self.name)
       @active_record_class = active_record_class
-      @table = active_record_class.table_name
+      @table = @active_record_class.connection.quote_table_name(active_record_class.table_name)
       @weight = 0
       @associated_limit = self.class.associated_limit
       @associated_number = self.class.associated_number
